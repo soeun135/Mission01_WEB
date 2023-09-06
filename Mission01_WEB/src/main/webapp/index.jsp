@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="api.APIService" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,15 +18,28 @@ th, td {
 </head>
 <body>
 	<h1>와이파이 정보 구하기</h1>
+	<%
+		APIService apiService = new APIService();
+	%>
 	<div>
 		<a href="index.jsp">홈</a> |
 		<a href="index.jsp">위치 히스토리 목록</a> |
 		<a href="load-wifi.jsp">Open API 와이파이 정보 가져오기</a>
 	</div>
 	<div>
-		LAT: <input type="text" value="0.0">, 
-		LNT: <input type="text" value="0.0">
-		<input type="button" value="내 위치 가져오기">
+		LAT: <input type="text" id="x" value="0.0">, 
+		LNT: <input type="text" id="y" value="0.0">
+		<button id="my-Space" onclick="calDist_()">내 위치 가져오기</button>
+		<script>
+		<% double xx = 0; double yy = 0; %>
+    		function calDist_() {
+    			var x = document.getElementById('x').value;
+			var y = document.getElementById('y').value;
+			<%=xx %> = x;
+			<%=yy %> = y;
+	  		<% apiService.calDist(xx, yy); %>
+    		}
+  		</script>
 		<input type="button" value="근처 WIPI 정보 보기">
 		
 	</div>
