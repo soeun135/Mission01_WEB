@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ page import="api.APIService"%>
+<%@ page import="java.util.List"%>
+<%@page import="dto.WifiHistory"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table>
+	<%
+		APIService apiService = new APIService();
+		List<WifiHistory> history = apiService.showHistory();
+	%>
+	<table>
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -20,16 +27,17 @@
 		<tbody>
 			<tr>
 				<%
+				for (WifiHistory wifi : history) {
 				%>
 			
 			<tr>
-				<td><%=wifi.getManageNo()%></td>
-				<td><%=wifi.getDist()%></td>
-				<td><%=wifi.getGugun()%></td>
-				<td><%=wifi.getWifiName()%></td>
-				<td><%=wifi.getAddress()%></td>
+				<td><%=wifi.getId()%></td>
+				<td><%=wifi.getX()%></td>
+				<td><%=wifi.getY()%></td>
+				<td><%=wifi.getMakeDate()%></td>
 			</tr>
 			<%
+			}
 			%>
 			</tr>
 		</tbody>

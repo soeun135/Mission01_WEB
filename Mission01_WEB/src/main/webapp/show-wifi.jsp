@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="api.APIService"%>
+<%@ page import="dto.WifiList" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +28,7 @@ th, td {
 	</div>
 	<%
 	APIService apiService = new APIService();
-	List<dto.WifiList> wifiListResult = apiService.showWifi();
+	List<WifiList> wifiListResult = apiService.showWifi();
 	%>
 
 	<table>
@@ -54,7 +56,7 @@ th, td {
 		<tbody>
 			<tr>
 				<%
-				for (dto.WifiList wifi : wifiListResult) {
+				for (WifiList wifi : wifiListResult) {
 				%>
 			
 			<tr>
@@ -79,7 +81,6 @@ th, td {
 			<%
 			}
 			%>
-			</tr>
 		</tbody>
 	</table>
 </body>
