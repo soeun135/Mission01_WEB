@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="api.APIService" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,30 +17,40 @@ th, td {
 </head>
 <body>
 	<h1>와이파이 정보 구하기</h1>
-	<%
-		APIService apiService = new APIService();
-	%>
 	<div>
 		<a href="index.jsp">홈</a> |
-		<a href="index.jsp">위치 히스토리 목록</a> |
+		<a href="loc-history.jsp">위치 히스토리 목록</a> |
 		<a href="load-wifi.jsp">Open API 와이파이 정보 가져오기</a>
 	</div>
 	<div>
 		LAT: <input type="text" id="x" value="0.0">, 
 		LNT: <input type="text" id="y" value="0.0">
 		<button id="my-Space" onclick="calDist_()">내 위치 가져오기</button>
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 		<script>
-		<% double xx = 0; double yy = 0; %>
     		function calDist_() {
-    			var x = document.getElementById('x').value;
-			var y = document.getElementById('y').value;
-			<%=xx %> = x;
-			<%=yy %> = y;
-	  		<% apiService.calDist(xx, yy); %>
+    			var xv = document.getElementById('x').value;
+			var yv = document.getElementById('y').value;
+			//let sendData = ""
+			//location.href='distUpdate.jsp?xvalue='+xv+'&yvalue='+yv;
+    		$.ajax({
+    			url: "cal",
+    			type: "GET",
+    			data: { xvalue : xv, yvalue: yv },
+    			dataType: "text",
+    			success: function(data) {
+    				alert(data);
+    			}
+    		});
     		}
+    		
   		</script>
-		<input type="button" value="근처 WIPI 정보 보기">
-		
+		<input type="button" onclick="loadWifi_()" value="근처 WIPI 정보 보기">
+		<script>
+		function loadWifi_() {
+			location.href='show-wifi.jsp';
+		}
+		</script>
 	</div>
 	<table>
 		<thead>

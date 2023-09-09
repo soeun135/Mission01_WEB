@@ -1,3 +1,4 @@
+package api;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,6 +15,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import dto.WifiList;
 
 public class APITest {
 	public static void main(String args[]) throws IOException {
@@ -47,8 +50,8 @@ public class APITest {
 		urlBuilder.append("/" + URLEncoder.encode("4b78435972736f6534356e73497157", "UTF-8"));
 		urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8"));
 		urlBuilder.append("/" + URLEncoder.encode("TbPublicWifiInfo", "UTF-8"));
-		urlBuilder.append("/" + URLEncoder.encode("23001", "UTF-8"));
-		urlBuilder.append("/" + URLEncoder.encode("24000", "UTF-8"));
+		urlBuilder.append("/" + URLEncoder.encode("7001", "UTF-8"));
+		urlBuilder.append("/" + URLEncoder.encode("8000", "UTF-8"));
 
 		// 3. URL 객체 생성
 		URL url = new URL(urlBuilder.toString());
@@ -119,8 +122,8 @@ public class APITest {
 			wifiList.setSetYear(Integer.parseInt((String)o.get("X_SWIFI_CNSTC_YEAR")));
 			wifiList.setInOutdoor((String) o.get("X_SWIFI_INOUT_DOOR"));
 			wifiList.setWificonnectEnvirionment((String) o.get("X_SWIFI_REMARS3"));
-			wifiList.setX(Double.parseDouble((String)o.get("LAT")));
-			wifiList.setY(Double.parseDouble((String)o.get("LNT")));
+			wifiList.setX(Double.parseDouble((String)o.get("LNT")));
+			wifiList.setY(Double.parseDouble((String)o.get("LAT")));
 			wifiList.setWorkDate((String)o.get("WORK_DTTM"));
 			
 			String sql = "insert into wifi_list (manage_no, dist, gugun, wifi_name, address, detail_address, set_floor, set_type, set_organ, service_division, network_kind, "
