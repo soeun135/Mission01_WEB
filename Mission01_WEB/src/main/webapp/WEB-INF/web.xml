@@ -18,6 +18,7 @@
   <servlet-name>homestart</servlet-name>
   <url-pattern>/home</url-pattern>
 </servlet-mapping>
+
 <servlet>
   <servlet-name>history</servlet-name>
   <servlet-class>controller.FrontController</servlet-class>
@@ -27,6 +28,7 @@
   <servlet-name>history</servlet-name>
   <url-pattern>/history</url-pattern>
 </servlet-mapping>
+
 <servlet>
   <servlet-name>load</servlet-name>
   <servlet-class>controller.FrontController</servlet-class>
@@ -36,6 +38,7 @@
   <servlet-name>load</servlet-name>
   <url-pattern>/load</url-pattern>
 </servlet-mapping>
+
 <servlet>
   <servlet-name>distupdate</servlet-name>
   <servlet-class>controller.FrontController</servlet-class>
@@ -45,6 +48,7 @@
   <servlet-name>distupdate</servlet-name>
   <url-pattern>/distupdate</url-pattern>
 </servlet-mapping>
+
 <servlet>
   <servlet-name>showwifi</servlet-name>
   <servlet-class>controller.FrontController</servlet-class>
@@ -54,6 +58,7 @@
   <servlet-name>showwifi</servlet-name>
   <url-pattern>/showwifi</url-pattern>
 </servlet-mapping>
+
 <servlet>
   <servlet-name>historydel</servlet-name>
   <servlet-class>controller.FrontController</servlet-class>
@@ -63,6 +68,7 @@
   <servlet-name>historydel</servlet-name>
   <url-pattern>/historydel</url-pattern>
 </servlet-mapping>
+
 <servlet>
   <servlet-name>bookmarkadd</servlet-name>
   <servlet-class>controller.FrontController</servlet-class>
@@ -72,6 +78,7 @@
   <servlet-name>bookmarkadd</servlet-name>
   <url-pattern>/bookmark/bookmarkadd</url-pattern>
 </servlet-mapping>
+
 <servlet>
   <servlet-name>bookmarklist</servlet-name>
   <servlet-class>controller.FrontController</servlet-class>
@@ -79,8 +86,9 @@
 </servlet>
 <servlet-mapping>
   <servlet-name>bookmarklist</servlet-name>
-  <url-pattern>/bookmark/bookmarkedit</url-pattern>
+  <url-pattern>/bookmark/bookmarklist</url-pattern>
 </servlet-mapping>
+
 <servlet>
   <servlet-name>bookmarkedit</servlet-name>
   <servlet-class>controller.FrontController</servlet-class>
@@ -90,5 +98,5 @@
   <servlet-name>bookmarkedit</servlet-name>
   <url-pattern>/bookmark/bookmarkedit</url-pattern>
 </servlet-mapping>
-<!--<bean class="api.APIService" /> -->
+<bean class="api.APIService" />
 </web-app>

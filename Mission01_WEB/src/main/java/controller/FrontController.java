@@ -15,9 +15,9 @@ public class FrontController extends HttpServlet implements javax.servlet.Servle
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = request.getRequestURI().substring(contextPath.length());
-		System.out.println("requestURL : "+ requestURI);
-		System.out.println("contextPath : " + contextPath);
-		System.out.println("command : "+command);
+//		System.out.println("requestURL : "+ requestURI);
+//		System.out.println("contextPath : " + contextPath);
+//		System.out.println("command : "+command);
 		System.out.println("요청" + request);
 		if (command.equals("/home")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
