@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.ShowWifiDAO" %>
 <%@ page import="dto.WifiList" %>
+<%@ page import="dto.BookMark" %>
+<%@ page import="dao.BookmarkGroupDAO" %>
+<%@ page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,18 +15,25 @@
 </head>
 <body>
 <%
-	WifiList wifiList = new WifiList();
+WifiList wifiList = new WifiList();
 	ShowWifiDAO dao = new ShowWifiDAO(); 
 	wifiList = dao.findBymanageNo(request.getParameter("manageNo"));
 	
+	//BookMark bookmark = new BookMark();
+	BookmarkGroupDAO bDao = new BookmarkGroupDAO();
+	List<BookMark> bookmark = bDao.showList();
 %>
 	<h1>와이파이 정보 구하기</h1>
 	<jsp:include page="header.jsp" />
-	<select>
-		<optgroup label="북마크 그룹 이름 선택">
-			<option></option>
-		</optgroup>
+	<form method="get" action="/bookmark/bookmarkListadd">
+	<select id="bookmarkGroup">
+			<option>북마크 그룹 이름 선택</option>
+			<% for(BookMark b : bookmark) { %>
+			<option value="<%=b.getBookmarkName() %>"> <%=b.getBookmarkName() %> </option>
+			<% } %>
 	</select>
+	<input type="submit" value="북마크 추가하기">
+	</form>
 	<table>
 		<tr>
 			<th>거리(Km)</th><td><%=wifiList.getDist() %></td>

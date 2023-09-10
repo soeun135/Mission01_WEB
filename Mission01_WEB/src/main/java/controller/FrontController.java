@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,25 +39,30 @@ public class FrontController extends HttpServlet implements javax.servlet.Servle
 			action.delete(request);
 			response.sendRedirect("/history");
 		} else if(command.equals("/bookmark/bookmarkadd")) {
-			BookmarkController action = new BookmarkController();
+			BookmarkGroupController action = new BookmarkGroupController();
 			action.execute(request);
 //			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarklist");
 //			dispatcher.forward(request, response);
 			response.sendRedirect("/bookmark/bookmarklist");
 		} else if(command.equals("/bookmark/bookmarklist")) {
-			BookmarkController action = new BookmarkController();
+			BookmarkGroupController action = new BookmarkGroupController();
 			action.showList(request);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmark-group.jsp");
 			dispatcher.forward(request, response);
 		} else if(command.equals("/bookmark/bookmarkedit")) {
-			BookmarkController action = new BookmarkController();
+			BookmarkGroupController action = new BookmarkGroupController();
 			action.edit(request);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarklist");
 			dispatcher.forward(request, response);
-		} else if(command.equals("/bookmark/bookmarkdel")) {
-			BookmarkController action = new BookmarkController();
+		} else if(command.equals("/bookmark/bookmarkgdel")) {
+			BookmarkGroupController action = new BookmarkGroupController();
 			action.delete(request);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarklist");
+			dispatcher.forward(request, response);
+		} else if(command.equals("/bookmark/bookmarkListadd")) {
+			BookmarkController action = new BookmarkController();
+			action.add(request);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarkList");
 			dispatcher.forward(request, response);
 		}
 	}
