@@ -15,10 +15,6 @@ public class FrontController extends HttpServlet implements javax.servlet.Servle
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = request.getRequestURI().substring(contextPath.length());
-//		System.out.println("requestURL : "+ requestURI);
-//		System.out.println("contextPath : " + contextPath);
-//		System.out.println("command : "+command);
-		System.out.println("요청" + request);
 		if (command.equals("/home")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
@@ -49,7 +45,6 @@ public class FrontController extends HttpServlet implements javax.servlet.Servle
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarklist");
 			dispatcher.forward(request, response);
 		} else if(command.equals("/bookmark/bookmarklist")) {
-			System.out.println("실행도미?");
 			BookmarkController action = new BookmarkController();
 			action.showList(request);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmark-group.jsp");
@@ -57,6 +52,11 @@ public class FrontController extends HttpServlet implements javax.servlet.Servle
 		} else if(command.equals("/bookmark/bookmarkedit")) {
 			BookmarkController action = new BookmarkController();
 			action.edit(request);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarklist");
+			dispatcher.forward(request, response);
+		} else if(command.equals("/bookmark/bookmarkdel")) {
+			BookmarkController action = new BookmarkController();
+			action.delete(request);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarklist");
 			dispatcher.forward(request, response);
 		}

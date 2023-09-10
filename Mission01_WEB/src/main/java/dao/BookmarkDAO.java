@@ -126,9 +126,6 @@ public class BookmarkDAO {
 	}
 
 	public void edit(int id, String name, int order) {
-		System.out.println(id);
-		System.out.println(name);
-		System.out.println(order);
 		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e) {
@@ -148,6 +145,46 @@ public class BookmarkDAO {
 			preparedStatement.setString(1, name);
 			preparedStatement.setInt(2, order);
 			preparedStatement.setInt(3, id);
+
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (preparedStatement != null && !preparedStatement.isClosed()) {
+					preparedStatement.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				if (connection != null && !connection.isClosed()) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void delete(int id) {
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String url_value = "jdbc:sqlite:C:\\dev_web\\sqlite-tools-win32-x86-3430000\\wifi.db";
+
+		try {
+			connection = DriverManager.getConnection(url_value);
+			String sql = "delete from bookmark_group "
+					+ " where id=?";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, id);
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {

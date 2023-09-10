@@ -41,4 +41,13 @@ public class BookmarkController{//frobt로부터 데이터 전달받을
 		int order = Integer.parseInt(request.getParameter("order"));
 		dao.edit(id, name, order);
 	}
+
+	public void delete(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch(UnsupportedEncodingException e) {	}
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		dao.delete(id);
+	}
 }

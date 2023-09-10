@@ -98,5 +98,15 @@
   <servlet-name>bookmarkedit</servlet-name>
   <url-pattern>/bookmark/bookmarkedit</url-pattern>
 </servlet-mapping>
+
+<servlet>
+  <servlet-name>bookmarkdel</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>bookmarkdel</servlet-name>
+  <url-pattern>/bookmark/bookmarkdel</url-pattern>
+</servlet-mapping>
 <bean class="api.APIService" />
 </web-app>
