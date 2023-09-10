@@ -15,7 +15,6 @@
 	double x = Double.parseDouble(request.getParameter("xvalue"));
 	double y = Double.parseDouble(request.getParameter("yvalue"));
 	
-	apiService.calDist(x, y);
 %>
 
 	<a href="index.jsp?xValue=<%= x %>&yValue=<%= y %>">홈</a>

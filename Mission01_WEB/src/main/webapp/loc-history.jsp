@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="api.APIService"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.List"%>
 <%@ page import="dto.WifiHistory"%>
 <!DOCTYPE html>
@@ -20,14 +20,7 @@ th, td {
 </head>
 <body>
 	<h1>위치 히스토리 목록</h1>
-	<div>
-		<a href="index.jsp">홈</a> | <a href="index.jsp">위치 히스토리 목록</a> | <a
-			href="load-wifi.jsp">Open API 와이파이 정보 가져오기</a>
-	</div>
-	<%
-		APIService apiService = new APIService();
-		List<WifiHistory> history = apiService.showHistory();
-	%>
+	<jsp:include page="header.jsp"/>
 	<table>
 		<thead>
 			<tr>
@@ -40,20 +33,22 @@ th, td {
 		</thead>
 		<tbody>
 			<tr>
-				<%
-				for (WifiHistory wifi : history) {
-				%>
-			
+			<c:forEach items= "${lists }" var="wifi">
 			<tr>
-				<td><%=wifi.getId()%></td>
-				<td><%=wifi.getX()%></td>
-				<td><%=wifi.getY()%></td>
-				<td><%=wifi.getMakeDate()%></td>
-				<td><button>삭제</button>
+				<td>${wifi.id }</td>
+				<td>${wifi.x }</td>
+				<td>${wifi.y }</td>
+				<td>${wifi.makeDate }</td>
+				<td><button id="delbtn" value="${wifi.id }" onclick='del_()'>삭제</button>
+				<script>
+				function del_() {
+					var x = document.getElementById('delbtn').value;
+					console.log(x);
+					location.href='historydel?id='+x;
+				}
+				</script>
 			</tr>
-			<%
-			}
-			%>
+			</c:forEach>
 			</tr>
 		</tbody>
 	</table>

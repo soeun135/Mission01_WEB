@@ -9,6 +9,60 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+  <servlet-name>homestart</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>homestart</servlet-name>
+  <url-pattern>/home</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>history</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>history</servlet-name>
+  <url-pattern>/history</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>load</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>load</servlet-name>
+  <url-pattern>/load</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>distupdate</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>distupdate</servlet-name>
+  <url-pattern>/distupdate</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>showwifi</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>showwifi</servlet-name>
+  <url-pattern>/showwifi</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>historydel</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>historydel</servlet-name>
+  <url-pattern>/historydel</url-pattern>
+</servlet-mapping>
 
 <bean class="api.APIService" />
 </web-app>

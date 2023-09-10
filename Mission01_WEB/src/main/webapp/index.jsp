@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,40 +18,38 @@ th, td {
 </head>
 <body>
 	<h1>와이파이 정보 구하기</h1>
-	<div>
-		<a href="index.jsp">홈</a> |
-		<a href="loc-history.jsp">위치 히스토리 목록</a> |
-		<a href="load-wifi.jsp">Open API 와이파이 정보 가져오기</a>
-	</div>
+	<jsp:include page="header.jsp"/>
+
 	<div>
 		LAT: <input type="text" id="x" value="0.0">, 
 		LNT: <input type="text" id="y" value="0.0">
-		<button id="my-Space" onclick="calDist_()">내 위치 가져오기</button>
+		<button onclick="calDist_()">내 위치 가져오기</button> 
 		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 		<script>
+		var xv;
+		var yv;
     		function calDist_() {
-    			var xv = document.getElementById('x').value;
-			var yv = document.getElementById('y').value;
-			//let sendData = ""
-			//location.href='distUpdate.jsp?xvalue='+xv+'&yvalue='+yv;
+    			xv = document.getElementById('x').value;
+			yv = document.getElementById('y').value;
     		$.ajax({
-    			url: "cal",
-    			type: "GET",
-    			data: { xvalue : xv, yvalue: yv },
-    			dataType: "text",
-    			success: function(data) {
-    				alert(data);
-    			}
+    			url:"distupdate",
+    			type:'get',
+    			data: { x: xv, y: yv}
     		});
+    		document.getElementById('x').value = xv;
+    		document.getElementById('y').value = yv;
     		}
     		
   		</script>
-		<input type="button" onclick="loadWifi_()" value="근처 WIPI 정보 보기">
+  		<input type="button" onclick="loadWifi_()" value="근처 WIPI 정보 보기">
 		<script>
 		function loadWifi_() {
-			location.href='show-wifi.jsp';
+			document.getElementById('x').value = xv;
+			document.getElementById('y').value = yv;
+
+			location.href='showwifi';
 		}
-		</script>
+		</script> 
 	</div>
 	<table>
 		<thead>
@@ -71,9 +70,37 @@ th, td {
 				<th>WIFI접속환경</th>
 				<th>X좌표</th>
 				<th>Y좌표</th>
+				<th>작업일자</th>
+				
 			</tr>
 		</thead>
 		<tbody>
+		<c:if test="${lists eq null}" var="result">
+		</table>
+			<p style="text-align: center;">위치정보를 입력한 후에 조회해주세요.</p>
+	
+		</c:if>
+		<c:forEach items= "${lists }" var="dto">
+		<tr>
+			<td>${dto.dist }</td>
+			<td>${dto.manageNo }</td>
+			<td>${dto.gugun }</td>
+			<td><a href="wifi-detail.jsp?wifiName=${dto.wifiName }">${dto.wifiName }</a></td>
+			<td>${dto.address }</td>
+			<td>${dto.detailAddress }</td>
+			<td>${dto.setFloor }</td>
+			<td>${dto.setType }</td>
+			<td>${dto.setOrgan }</td>
+			<td>${dto.serviceDivision }</td>
+			<td>${dto.networkKind }</td>
+			<td>${dto.setYear }</td>
+			<td>${dto.inOutdoor }</td>
+			<td>${dto.wificonnectEnvirionment }</td>
+			<td>${dto.x }</td>
+			<td>${dto.y }</td>
+			<td>${dto.workDate }</td>
+			</tr>
+		</c:forEach>
 		</tbody>
 	</table>
 </body>
