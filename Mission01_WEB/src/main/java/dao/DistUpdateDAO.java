@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class DistUpdateDAO {
 	//controller에서 호출되어 DB를 접근할 dao
@@ -33,43 +37,42 @@ public class DistUpdateDAO {
 	
 			String insertsql = "insert into wifi_history (x, y)"
 					+ " values(?,?)";
-			preparedStatement.close();
 
 			preparedStatement = connection.prepareStatement(insertsql);
 			preparedStatement.setDouble(1, x);
 			preparedStatement.setDouble(2, y);
 			
 			preparedStatement.executeUpdate();
-			preparedStatement.close();
 	
-			String updatesql = "update wifi_list set dist= ?";
-			preparedStatement = connection.prepareStatement(updatesql);
-			
 			int i = 0;
-			while (rs.next()) {				
+			HashMap<String, Double> map = new HashMap<>();
+			while (rs.next()) {								
 				double x_value = rs.getDouble("x");
 				double y_value = rs.getDouble("y");
 				
 				double dist = distance(x, y, x_value, y_value);
 				dist = Math.round(dist * 10000) / 10000.0;
-				System.out.println(dist);
-				i++;
-				preparedStatement.setDouble(1, dist);
+				map.put(rs.getString("manage_no"), dist);
+			}
+			String updatesql = "update wifi_list set dist= ? where manage_no=?";
+			preparedStatement = connection.prepareStatement(updatesql);
+			int j = 0;
+			for(Map.Entry<String,Double> item : map.entrySet()) {
+				preparedStatement.setDouble(1, item.getValue());
+				preparedStatement.setString(2, item.getKey());
 				
 				preparedStatement.addBatch();
 				preparedStatement.clearParameters();
 				
-				if (( i < 1000) ) {
-					preparedStatement.executeBatch();
-					preparedStatement.clearBatch();
+				if ((j % 1000) == 0) {
+					preparedStatement.executeBatch(); //sql문 실행
+					preparedStatement.clearBatch(); //배치 클리어
 					connection.commit();
-				} else {
-					break;
-				}
+				} 
+				j++;
 			}
 			preparedStatement.executeBatch();
 			connection.commit();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 			try {

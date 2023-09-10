@@ -85,7 +85,7 @@ th, td {
 			<td>${dto.dist }</td>
 			<td>${dto.manageNo }</td>
 			<td>${dto.gugun }</td>
-			<td><a href="wifi-detail.jsp?wifiName=${dto.wifiName }">${dto.wifiName }</a></td>
+			<td><a href="wifi-detail.jsp?manageNo=${dto.manageNo }">${dto.wifiName }</a></td>
 			<td>${dto.address }</td>
 			<td>${dto.detailAddress }</td>
 			<td>${dto.setFloor }</td>

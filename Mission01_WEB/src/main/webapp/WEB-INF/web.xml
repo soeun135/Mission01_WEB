@@ -63,6 +63,23 @@
   <servlet-name>historydel</servlet-name>
   <url-pattern>/historydel</url-pattern>
 </servlet-mapping>
-
+<servlet>
+  <servlet-name>bookmarkadd</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>bookmarkadd</servlet-name>
+  <url-pattern>/bookmark/bookmarkadd</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>bookmarklist</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>bookmarklist</servlet-name>
+  <url-pattern>/bookmark/bookmarklist</url-pattern>
+</servlet-mapping>
 <bean class="api.APIService" />
 </web-app>
