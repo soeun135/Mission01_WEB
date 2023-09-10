@@ -25,7 +25,6 @@
 			function bmgroupadd_() {
 				var n = document.getElementById('name').value;
 				var o = document.getElementById('order').value
-				//location.href="/bookmarkadd?name="+n+"&order="+o;
 					
 				$.ajax({
 					url:"bookmarkadd",

@@ -38,7 +38,7 @@
 				<td>${bm.sequence }</td>
 				<td>${bm.makeDate }</td>
 				<td>${bm.editDate }</td>
-				<td><a href="bookmark-group-edit.jsp?id=">수정</a> <a href="bookmark/bookmark-group-del">삭제</a></td>
+				<td><a href="bookmark-group-edit.jsp?id=${bm.id }">수정</a> <a href="bookmark/bookmark-group-del">삭제</a></td>
 			</tr>
 		</c:forEach>
 		</tbody>

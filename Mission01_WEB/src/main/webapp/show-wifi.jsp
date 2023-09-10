@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="api.APIService"%>
 <%@ page import="dto.WifiList" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -26,11 +27,6 @@ th, td {
 		<a href="index.jsp">홈</a> | <a href="index.jsp">위치 히스토리 목록</a> | <a
 			href="load-wifi.jsp">Open API 와이파이 정보 가져오기</a>
 	</div>
-	<%
-	APIService apiService = new APIService();
-	List<WifiList> wifiListResult = apiService.showWifi();
-	%>
-
 	<table>
 		<thead>
 			<tr>
@@ -56,31 +52,13 @@ th, td {
 		<tbody>
 			<tr>
 				<%
-				for (WifiList wifi : wifiListResult) {
+				//for (WifiList wifi : wifiListResult) {
 				%>
 			
 			<tr>
-				<td><%=wifi.getManageNo()%></td>
-				<td><%=wifi.getDist()%></td>
-				<td><%=wifi.getGugun()%></td>
-				<td><%=wifi.getWifiName()%></td>
-				<td><%=wifi.getAddress()%></td>
-				<td><%=wifi.getDetailAddress()%></td>
-				<td><%=wifi.getSetFloor()%></td>
-				<td><%=wifi.getSetType()%></td>
-				<td><%=wifi.getSetOrgan()%></td>
-				<td><%=wifi.getServiceDivision()%></td>
-				<td><%=wifi.getNetworkKind()%></td>
-				<td><%=wifi.getSetYear()%></td>
-				<td><%=wifi.getInOutdoor()%></td>
-				<td><%=wifi.getWificonnectEnvirionment()%></td>
-				<td><%=wifi.getX()%></td>
-				<td><%=wifi.getY()%></td>
-				<td><%=wifi.getWorkDate()%></td>
+				
 			</tr>
-			<%
-			}
-			%>
+			
 		</tbody>
 	</table>
 </body>

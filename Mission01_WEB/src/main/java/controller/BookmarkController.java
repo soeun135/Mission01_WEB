@@ -30,4 +30,16 @@ public class BookmarkController{//frobt로부터 데이터 전달받을
 		List<BookMark> list = dao.showList();
 		request.setAttribute("lists", list);
 	}
+	
+	public void edit(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch(UnsupportedEncodingException e) {	}
+		
+		System.out.println(request.getParameter("name"));
+		int id = Integer.parseInt(request.getParameter("id"));
+		String name = request.getParameter("name");
+		int order = Integer.parseInt(request.getParameter("order"));
+		dao.edit(id, name, order);
+	}
 }

@@ -79,7 +79,16 @@
 </servlet>
 <servlet-mapping>
   <servlet-name>bookmarklist</servlet-name>
-  <url-pattern>/bookmark/bookmarklist</url-pattern>
+  <url-pattern>/bookmark/bookmarkedit</url-pattern>
 </servlet-mapping>
-<bean class="api.APIService" />
+<servlet>
+  <servlet-name>bookmarkedit</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>bookmarkedit</servlet-name>
+  <url-pattern>/bookmark/bookmarkedit</url-pattern>
+</servlet-mapping>
+<!--<bean class="api.APIService" /> -->
 </web-app>
