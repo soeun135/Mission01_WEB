@@ -10,7 +10,7 @@ import java.util.List;
 
 import dto.WifiHistory;
 
-public class HistorydelDAO {
+public class HistoryDAO {
 	public List<WifiHistory> showHistory() {
 		List<WifiHistory> wifiHistoryResult = new ArrayList<>();
 			try {
@@ -69,6 +69,7 @@ public class HistorydelDAO {
 			}
 			return wifiHistoryResult;
 	}
+	
 	public void delhistory(int id) {
 		try {
 			Class.forName("org.sqlite.JDBC");

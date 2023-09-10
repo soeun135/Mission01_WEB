@@ -36,14 +36,15 @@ public class FrontController extends HttpServlet implements javax.servlet.Servle
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/loc-history.jsp");
 			dispatcher.forward(request, response);
 		} 	else if(command.equals("/historydel")) {
-			HistoryDelController action = new HistoryDelController();
-			action.execute(request);
+			HistoryController action = new HistoryController();
+			action.delete(request);
 			response.sendRedirect("/history");
 		} else if(command.equals("/bookmark/bookmarkadd")) {
 			BookmarkController action = new BookmarkController();
 			action.execute(request);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarklist");
-			dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarklist");
+//			dispatcher.forward(request, response);
+			response.sendRedirect("/bookmark/bookmarklist");
 		} else if(command.equals("/bookmark/bookmarklist")) {
 			BookmarkController action = new BookmarkController();
 			action.showList(request);

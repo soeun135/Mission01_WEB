@@ -5,13 +5,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import dao.HistorydelDAO;
+import dao.HistoryDAO;
 import dto.WifiHistory;
 
 public class HistoryController {
-	public void showHistory(HttpServletRequest request) {
-		HistorydelDAO dao = new HistorydelDAO();
+	HistoryDAO dao = new HistoryDAO();
 
+	public void showHistory(HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch(UnsupportedEncodingException e) {	}
@@ -20,4 +20,11 @@ public class HistoryController {
 		request.setAttribute("lists", list);
 	}
 
+	public void delete(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch(UnsupportedEncodingException e) {	}
+		
+		dao.delhistory(Integer.parseInt(request.getParameter("id")));
+	}
 }
