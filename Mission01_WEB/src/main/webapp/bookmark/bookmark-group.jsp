@@ -12,6 +12,7 @@
 <body>
 	<h1>북마크 그룹</h1>
 	<jsp:include page="/header.jsp" />
+	<br>
 	<div>
 		<button onclick="bmgroupadd_()">북마크 그룹 이름 추가</button>
 		<script>

@@ -41,9 +41,8 @@ public class FrontController extends HttpServlet implements javax.servlet.Servle
 		} else if(command.equals("/bookmark/bookmarkadd")) {
 			BookmarkGroupController action = new BookmarkGroupController();
 			action.execute(request);
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarkglist");
-//			dispatcher.forward(request, response);
-			response.sendRedirect("/bookmark/bookmarkglist");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarkglist");
+			dispatcher.forward(request, response);
 		} else if(command.equals("/bookmark/bookmarkglist")) {
 			BookmarkGroupController action = new BookmarkGroupController();
 			action.showList(request);

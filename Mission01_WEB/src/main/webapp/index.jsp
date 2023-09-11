@@ -7,12 +7,10 @@
 <meta charset="UTF-8">
 <title>와이파이 정보 구하기</title>
 <link href="table.css" rel="stylesheet" type="text/css" />
-</style>
 </head>
 <body>
 	<h1>와이파이 정보 구하기</h1>
 	<jsp:include page="header.jsp"/>
-
 	<div>
 		LAT: <input type="text" id="x" value="0.0">, 
 		LNT: <input type="text" id="y" value="0.0">

@@ -49,7 +49,7 @@ tbody {
 		</thead>
 		<tbody>
 		<tr>
-			<td><a href="/bookmark/bookmarkglist">돌아가기</a> | <button value="" onclick="listdel_(${bookMark.id });">삭제</button></td>
+			<td><a href="/bookmark/bookmarkList">돌아가기</a> | <button value="" onclick="listdel_(${bookMark.id });">삭제</button></td>
 		</tr>
 		</tbody>
 	</table>
