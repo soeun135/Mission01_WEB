@@ -80,13 +80,13 @@
 </servlet-mapping>
 
 <servlet>
-  <servlet-name>bookmarklist</servlet-name>
+  <servlet-name>bookmarkglist</servlet-name>
   <servlet-class>controller.FrontController</servlet-class>
   <load-on-startup>1</load-on-startup>
 </servlet>
 <servlet-mapping>
-  <servlet-name>bookmarklist</servlet-name>
-  <url-pattern>/bookmark/bookmarklist</url-pattern>
+  <servlet-name>bookmarkglist</servlet-name>
+  <url-pattern>/bookmark/bookmarkglist</url-pattern>
 </servlet-mapping>
 
 <servlet>
@@ -119,5 +119,34 @@
   <url-pattern>/bookmark/bookmarkListadd</url-pattern>
 </servlet-mapping>
 
+<servlet>
+  <servlet-name>bookmarkList</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>bookmarkList</servlet-name>
+  <url-pattern>/bookmark/bookmarkList</url-pattern>
+</servlet-mapping>
+
+<servlet>
+  <servlet-name>bookmarkdel</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>bookmarkdel</servlet-name>
+  <url-pattern>/bookmark/bookmarkdel</url-pattern>
+</servlet-mapping>
+
+<servlet>
+  <servlet-name>bookmarkdelset</servlet-name>
+  <servlet-class>controller.FrontController</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>bookmarkdelset</servlet-name>
+  <url-pattern>/bookmark/bookmarkdelset</url-pattern>
+</servlet-mapping>
 <bean class="api.APIService" />
 </web-app>

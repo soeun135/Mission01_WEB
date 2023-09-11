@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.ShowWifiDAO" %>
 <%@ page import="dto.WifiList" %>
-<%@ page import="dto.BookMark" %>
+<%@ page import="dto.BookMarkGroup" %>
 <%@ page import="dao.BookmarkGroupDAO" %>
 <%@ page import="java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -13,6 +13,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link href="table.css" rel="stylesheet" type="text/css" />
+
 <body>
 <%
 WifiList wifiList = new WifiList();
@@ -21,19 +23,32 @@ WifiList wifiList = new WifiList();
 	
 	//BookMark bookmark = new BookMark();
 	BookmarkGroupDAO bDao = new BookmarkGroupDAO();
-	List<BookMark> bookmark = bDao.showList();
+	List<BookMarkGroup> bookmark = bDao.showList();
 %>
 	<h1>와이파이 정보 구하기</h1>
 	<jsp:include page="header.jsp" />
-	<form method="get" action="/bookmark/bookmarkListadd">
 	<select id="bookmarkGroup">
 			<option>북마크 그룹 이름 선택</option>
-			<% for(BookMark b : bookmark) { %>
-			<option value="<%=b.getBookmarkName() %>"> <%=b.getBookmarkName() %> </option>
+			<%
+			for(BookMarkGroup b : bookmark) {
+			%>
+			<option value="<%=b.getBookmarkName() %>"><%=b.getBookmarkName() %> </option>
 			<% } %>
 	</select>
-	<input type="submit" value="북마크 추가하기">
-	</form>
+	<button onclick="bookmarkadd_()">북마크 추가하기</button>
+	<script>
+		function bookmarkadd_() {
+			const group = document.getElementById('bookmarkGroup');
+			const result = group.options[group.selectedIndex].value;
+			location.href="/bookmark/bookmarkListadd?bookmarkGroup="+result+"&manageNo="+getParameterByName("manageNo");
+		}
+		function getParameterByName(name) {
+			  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			  results = regex.exec(location.search);
+			  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+	</script>
 	<table>
 		<tr>
 			<th>거리(Km)</th><td><%=wifiList.getDist() %></td>

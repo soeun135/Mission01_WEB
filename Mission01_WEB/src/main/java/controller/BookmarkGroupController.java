@@ -6,7 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dao.BookmarkGroupDAO;
-import dto.BookMark;
+import dto.BookMarkGroup;
 
 public class BookmarkGroupController{//frobt로부터 데이터 전달받을
 	BookmarkGroupDAO dao = new BookmarkGroupDAO();
@@ -27,7 +27,7 @@ public class BookmarkGroupController{//frobt로부터 데이터 전달받을
 			request.setCharacterEncoding("utf-8");
 		} catch(UnsupportedEncodingException e) {	}
 		
-		List<BookMark> list = dao.showList();
+		List<BookMarkGroup> list = dao.showList();
 		request.setAttribute("lists", list);
 	}
 	

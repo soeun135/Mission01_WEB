@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
 
-import dto.BookMark;
+import dto.BookMarkGroup;
 
 public class BookmarkGroupDAO {
 	// controller에서 호출되어 DB를 접근할 dao
@@ -29,7 +29,7 @@ public class BookmarkGroupDAO {
 
 		try {
 			connection = DriverManager.getConnection(url_value);
-			connection.setAutoCommit(false);
+
 			String sql = "insert into bookmark_group (bookmark_name, sequence)" 
 					+ " values(?,?)";
 
@@ -37,11 +37,7 @@ public class BookmarkGroupDAO {
 			preparedStatement.setString(1, name);
 			preparedStatement.setInt(2, order_value);
 
-			preparedStatement.addBatch();
-			preparedStatement.clearParameters();
-
-			preparedStatement.executeBatch();
-			connection.commit();
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			try {
@@ -67,8 +63,8 @@ public class BookmarkGroupDAO {
 		}
 	}
 
-	public List<BookMark> showList(){
-		List<BookMark> bookmarkList = new ArrayList<>();
+	public List<BookMarkGroup> showList(){
+		List<BookMarkGroup> bookmarkList = new ArrayList<>();
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -90,7 +86,7 @@ public class BookmarkGroupDAO {
 			rs = preparedStatement.executeQuery();
 
 			while(rs.next()) {
-				BookMark bookmark = new BookMark();
+				BookMarkGroup bookmark = new BookMarkGroup();
 				bookmark.setId(rs.getInt("id"));
 				bookmark.setBookmarkName(rs.getString("bookmark_name"));
 				bookmark.setSequence(rs.getInt("sequence"));

@@ -1,6 +1,6 @@
 package dto;
 
-public class BookMark {
+public class BookMarkGroup {
 	private int id;
 	private String bookmarkName;
 	private int sequence;

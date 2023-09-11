@@ -1,22 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>와이파이 정보 구하기</title>
+<link href="/table.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
-<h1>북마크 그룹</h1>
+<h1>북마크 목록</h1>
 	<jsp:include page="/header.jsp" />
-	<div>
-		<button onclick="bmgroupadd_()">북마크 그룹 이름 추가</button>
-		<script>
-			function bmgroupadd_() {
-				location.href="bookmark-group-add.jsp";
-			}
-		</script>
-	</div>
 	<table>
 		<thead>
 			<tr>
@@ -28,14 +24,14 @@
 			</tr>
 		</thead>
 		<tbody>
-		<!-- 북마크 그룹 테이블에서 가져온 값들 쏴주기 -->
+		<!-- 북마크 저장 테이블에서 가져온 값 쏴주기 -->
 		<c:forEach items="${lists }" var="bm">
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><a href="/bookmark/bookmarkdel?id=">삭제</a></td>
+				<td>${bm.id }</td>
+				<td>${bm.bookmarkName }</td>
+				<td>${bm.wifiName }</td>
+				<td>${bm.makeDate }</td>
+				<td><a href="/bookmark/bookmarkdel?id=${bm.id }">삭제</a></td>
 			</tr>
 		</c:forEach>
 		</tbody>

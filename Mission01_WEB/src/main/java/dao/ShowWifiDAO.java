@@ -154,6 +154,7 @@ public class ShowWifiDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}		return wifiList;
+		}
+		return wifiList;
 	}
 }

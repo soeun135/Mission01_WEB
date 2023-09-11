@@ -6,14 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>와이파이 정보 구하기</title>
-<style>
-thead {
-	height:50px;
-	background: pink;
-}
-th, td {
-  border: 1px solid white ,
-}
+<link href="table.css" rel="stylesheet" type="text/css" />
 </style>
 </head>
 <body>
