@@ -19,18 +19,12 @@
 		<button onclick="calDist_()">내 위치 가져오기</button> 
 		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 		<script>
-		var xv = document.getElementById('x').value;
-		var yv = document.getElementById('y').value;
     		function calDist_() {
-    			if(xv > 0.0 && yv > 0.0) {
-    				console.log(xv);
-    	    		$.ajax({
-    	    			url:"distupdate",
-    	    			type:'get',
-    	    			data: { x: xv, y: yv}
-    	    		});
-    				
-    			} else {
+    			var xv = document.getElementById('x').value;
+    			var yv = document.getElementById('y').value;
+    			console.log(xv);
+    			console.log(yv);
+    			if(xv == 0 && yv == 0) {
     				var options = {
     			  		 enableHighAccuracy: true,
     			  		timeout: 5000,
@@ -51,7 +45,15 @@
     			  	};
 
     			  	navigator.geolocation.getCurrentPosition(success, error, options);
-    			}
+    			}else {
+    				console.log(xv);
+    	    		$.ajax({
+    	    			url:"distupdate",
+    	    			type:'get',
+    	    			data: { x: xv, y: yv}
+    	    		});
+    				
+    			} 
     			
     		document.getElementById('x').value = xv;
     		document.getElementById('y').value = yv;
