@@ -52,7 +52,7 @@ public class BookmarkController{//frobt로부터 데이터 전달받을
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch(UnsupportedEncodingException e) {	}
-		
+
 		dao.deleteset(Integer.parseInt(request.getParameter("id")));
 	}
 }

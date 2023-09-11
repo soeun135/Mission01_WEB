@@ -62,7 +62,7 @@ public class FrontController extends HttpServlet implements javax.servlet.Servle
 		} else if(command.equals("/bookmark/bookmarkListadd")) {
 			BookmarkController action = new BookmarkController();
 			action.add(request);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmark-group.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarkList");
 			dispatcher.forward(request, response);
 		} else if(command.equals("/bookmark/bookmarkList")) {
 			BookmarkController action = new BookmarkController();
@@ -77,7 +77,7 @@ public class FrontController extends HttpServlet implements javax.servlet.Servle
 			} else if(command.equals("/bookmark/bookmarkdelset")) {
 				BookmarkController action = new BookmarkController();
 				action.deleteset(request);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmark-list.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/bookmark/bookmarkList");
 				dispatcher.forward(request, response);
 				} 
 	}

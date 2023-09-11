@@ -49,30 +49,14 @@ tbody {
 		</thead>
 		<tbody>
 		<tr>
-			<td><a href="/bookmark/bookmarkglist">돌아가기</a> | <button onclick="/bookmark/bookmarkdel?id=${bookMark.id }">삭제</button></td>
+			<td><a href="/bookmark/bookmarkglist">돌아가기</a> | <button value="" onclick="listdel_(${bookMark.id });">삭제</button></td>
 		</tr>
 		</tbody>
 	</table>
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-		<script>
-		function bookmarkedit_() {
-			var n = document.getElementById('name').value;
-			var o = document.getElementById('order').value
-			var i = getParameterByName('id');
-			console.log(n);
-			console.log(o);
-			$.ajax({
-				url:"bookmarkedit",
-				type:'get',
-				data: {id:i,name : n, order:o}
-			});
+	<script>
+		function listdel_(id) {
+			location.href="/bookmark/bookmarkdelset?id="+id;
 		}
-		function getParameterByName(name) {
-			  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-			  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-			  results = regex.exec(location.search);
-			  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-			}
-		</script>
+	</script>
 </body>
 </html>
