@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>와이파이 정보 구하기</title>
 <link href="table.css" rel="stylesheet" type="text/css" />
 </head>
@@ -17,16 +19,40 @@
 		<button onclick="calDist_()">내 위치 가져오기</button> 
 		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 		<script>
-		var xv;
-		var yv;
+		var xv = document.getElementById('x').value;
+		var yv = document.getElementById('y').value;
     		function calDist_() {
-    			xv = document.getElementById('x').value;
-			yv = document.getElementById('y').value;
-    		$.ajax({
-    			url:"distupdate",
-    			type:'get',
-    			data: { x: xv, y: yv}
-    		});
+    			if(xv > 0.0 && yv > 0.0) {
+    				console.log(xv);
+    	    		$.ajax({
+    	    			url:"distupdate",
+    	    			type:'get',
+    	    			data: { x: xv, y: yv}
+    	    		});
+    				
+    			} else {
+    				var options = {
+    			  		 enableHighAccuracy: true,
+    			  		timeout: 5000,
+    			  		maximumAge: 0
+    			  	};
+
+    			  	function success(position) {
+    			  		$.ajax({
+        	    			url:"distupdate",
+        	    			type:'get',
+        	    			data: { x: position.coords.latitude, y: position.coords.longitude}
+        	    			});
+    			  		
+    			  	};
+
+    			  	function error(err) {
+    			  		console.warn('ERROR(' + err.code + '): ' + err.message);
+    			  	};
+
+    			  	navigator.geolocation.getCurrentPosition(success, error, options);
+    			}
+    			
     		document.getElementById('x').value = xv;
     		document.getElementById('y').value = yv;
     		}
