@@ -19,9 +19,11 @@
 		<button onclick="calDist_()">내 위치 가져오기</button> 
 		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 		<script>
+		var xv = document.getElementById('x').value;
+		var yv = document.getElementById('y').value;
     		function calDist_() {
-    			var xv = document.getElementById('x').value;
-    			var yv = document.getElementById('y').value;
+    			xv = document.getElementById('x').value;
+    			yv = document.getElementById('y').value;
     			console.log(xv);
     			console.log(yv);
     			if(xv == 0 && yv == 0) {
