@@ -43,11 +43,8 @@ public class APITest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// 1. url 만들기 위한 StringBuilder
-		StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088");
-
-		// 2. 오픈 API의 요청 규격에 맞는 파라미터 생성, 발급받은 인증키
-		urlBuilder.append("/" + URLEncoder.encode("4b78435972736f6534356e73497157", "UTF-8"));
+		// 1. url정
+		urlBuilder.append("/" + URLEncoder.encode("", "UTF-8"));
 		urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8"));
 		urlBuilder.append("/" + URLEncoder.encode("TbPublicWifiInfo", "UTF-8"));
 		urlBuilder.append("/" + URLEncoder.encode("7001", "UTF-8"));
